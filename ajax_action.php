@@ -7,7 +7,7 @@
 
     $con = new mysqli($serverName, $userName, $password, $dbName);
 
-    $query_select_status = mysqli_query($con, "SELECT * FROM tbl_data WHRE id = 1");
+    $query_select_status = mysqli_query($con, "SELECT * FROM tbl_data WHERE id = 1");
 
     if(mysqli_num_rows($query_select_status)){
         while ($rows = mysqli_fetch_array($query_select_status)){
