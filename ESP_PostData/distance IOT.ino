@@ -1,5 +1,5 @@
-#define TRIGGER 4
-#define ECHO    5
+int TRIGGER = D6;
+int ECHO = D5;
  
 void setup() {
  
