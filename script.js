@@ -9,7 +9,8 @@ $(document).ready(function(){
             url :"ajax_action.php",
             method: "POST",
             success: function(data){
-                $('#result').html(data);
+                $('#status').html(data);
+                $('#progress-bar').value(data);
             }
         })
     }

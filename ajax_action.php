@@ -12,9 +12,9 @@
     if(mysqli_num_rows($query_select_status)){
         while ($rows = mysqli_fetch_array($query_select_status)){
             if($rows['status'] == "Yes"){
-                echo '<p>Co vat can kia</p>';
+                echo '<p>Have trash</p>';
             } else {
-                echo '<p>Khong co vat can kia</p>';
+                echo '<p>No trash</p>';
             }
             
         }
