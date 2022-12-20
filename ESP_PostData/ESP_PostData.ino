@@ -10,8 +10,8 @@ int hong_ngoai = D6;
 // Servo myservo;
 ESP8266WiFiMulti WiFiMulti;
 
-const char* ssid = "Kid";    // Co dung thi nho doi ten wifi nhe cac nguoi anh em
-const char* password = "taingoduc0406";   // pass luon nhe cac ban
+const char* ssid = "VNUK4-2";    // Co dung thi nho doi ten wifi nhe cac nguoi anh em
+const char* password = "Z@q12wsx";   // pass luon nhe cac ban
 
 // Your IP address or domain name with URL path
 const char* serverName = "http://hohutasmartgarbage.atwebpages.com/updateData.php";
