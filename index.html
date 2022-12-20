@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recycle Bin Sensor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js" integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" sizes="180x180" href="/recycle_bin.png">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center"><h1>Recycle Bin Sensor</h1></div>
+        </div>
+        <div class="row">            
+            <div class="col-12 text-center"><h2>Current Status: <span id="status"></span></h2></div>
+            <progress value="0" max="100" class="mx-auto" id="progress-bar"></progress>
+        </div>
+        <img src="/recycle_bin.png" alt="Recycle Bin" class="mx-auto d-block mt-4">
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <button type="button" class="btn btn-primary" id="btn">Check Status</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
