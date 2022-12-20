@@ -10,7 +10,7 @@ $(document).ready(function(){
             method: "POST",
             success: function(data){
                 $('#status').html(data);
-                $('#progress-bar').value(data);
+                console.log(data);
             }
         })
     }
