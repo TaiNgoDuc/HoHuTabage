@@ -85,25 +85,11 @@ void loop() {
 
   Serial.println(digitalRead(echo1)); 
   Serial.println(digitalRead(echo2));
-  if (0 < distance <= 10) {
-    postData = "status=10%";
-    delay(1000);
-  } else if (10 < distance <= 20) {
-    postData = "status=20%";
-    delay(1000);
-  } else if (10 < distance <= 20) {
-    postData = "status=20%";
-    delay(1000);
-  } else if (20 < distance <= 30) {
-    postData = "status=30%";
-    delay(1000);
-  } else if (30 < distance <= 40) {
-    postData = "status=40%";
-    delay(1000);
-  } else if (50 < distance <= 60) {
-    postData = "status=50%";
-    delay(1000);
-  }
+
+  //round distance to the nearest 10
+  distance = distance - (distance % 10);
+  postData = "status=" + String(distance) + "cm";
+  delay(1000);
 
   Serial.println(postData);
   Serial.print(distance);
