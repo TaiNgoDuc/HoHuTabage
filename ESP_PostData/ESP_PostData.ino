@@ -7,8 +7,10 @@
 
 // int hong_ngoai = D6;
 
-const int trig = D6;     // chân trig của HC-SR04
-const int echo = D5;     // chân echo của HC-SR04
+const int trig1 = D6;     // chân trig của HC-SR04
+const int echo1 = D5;     // chân echo của HC-SR04
+const int trig2 = D7;     // chân trig của HC-SR04
+const int echo2 = D4;     // chân echo của HC-SR04
 
 // Servo myservo;
 ESP8266WiFiMulti WiFiMulti;
@@ -34,15 +36,19 @@ void setup() {
     Serial.print(".");
   }
   Serial.println("Connected to WiFi");
-  pinMode(trig, OUTPUT);
-  pinMode(echo,INPUT);
+  pinMode(trig1, OUTPUT);
+  pinMode(trig2, OUTPUT);
+  pinMode(echo1,INPUT);
+  pinMode(echo2,INPUT);
 }
 
 void loop() {
 
-  unsigned long duration; // biến đo thời gian
-  int distance;           // biến lưu khoảng cách
-  bool debug = false;
+  unsigned long duration1; // biến đo thời gian
+  int distance1;           // biến lưu khoảng cách
+  unsigned long duration2; // biến đo thời gian
+  int distance2;           // biến lưu khoảng cách
+  int distance;            // bien luu khoang cach trung binh cua 2 sensor
 
   WiFiClient client;
   HTTPClient http;
@@ -53,20 +59,32 @@ void loop() {
 
   Serial.print("Gia tri cam bien:");
 
-  digitalWrite(trig,0);   // tắt chân trig
+  //Day la gia tri cua ultrasonic
+  digitalWrite(trig1,0);   // tắt chân trig
+  digitalWrite(trig2,0);   // tắt chân trig
   delay(2000);
-  digitalWrite(trig,1);   // phát xung từ chân trig
+  digitalWrite(trig1,1);   // phát xung từ chân trig
+  digitalWrite(trig2,1);   // phát xung từ chân trig
   delay(5000);   // xung có độ dài 5 microSeconds
-  digitalWrite(trig,0);   // tắt chân trig
+  digitalWrite(trig1,0);   // tắt chân trig
+  digitalWrite(trig2,0);   // tắt chân trig
+
+  
     
-  /* Tính toán thời gian */
+  /* Tính toán thời gian cua sensor */
   // Đo độ rộng xung HIGH ở chân echo. 
-  duration = pulseIn(echo,HIGH);  
+  duration1 = pulseIn(echo1,HIGH);  
+  duration2 = pulseIn(echo2,HIGH); 
   // Tính khoảng cách đến vật.
-  distance = int(duration/2/29.412);
+  distance1 = int(duration1/2/29.412);
+  distance2 = int(duration2/2/29.412);
+
+  /* Tinh khoang cach trung binh cua 2 sensor */
+  distance = int(( distance1 + distance2) / 2);
 
 
-  Serial.println(digitalRead(echo)); 
+  Serial.println(digitalRead(echo1)); 
+  Serial.println(digitalRead(echo2));
   if (0 < distance <= 10) {
     postData = "status=10%";
     delay(1000);
@@ -85,12 +103,6 @@ void loop() {
   } else if (50 < distance <= 60) {
     postData = "status=50%";
     delay(1000);
-  }
-
-  //round distance to the nearest 10
-  distance = distance - (distance % 10);
-  if (debug) {
-    postData = "status=" + String(distance) + "cm";
   }
 
   Serial.println(postData);

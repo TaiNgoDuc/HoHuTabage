@@ -24,7 +24,7 @@
             // }
 
             $status = $rows['status'];
-            echo '<p>Rac'.$status.'</p>
+            echo '<p>Rac' . $status . '</p>';
             
         }
     }
