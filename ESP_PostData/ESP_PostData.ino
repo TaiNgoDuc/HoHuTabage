@@ -42,6 +42,7 @@ void loop() {
 
   unsigned long duration; // biến đo thời gian
   int distance;           // biến lưu khoảng cách
+  bool debug = false;
 
   WiFiClient client;
   HTTPClient http;
@@ -84,6 +85,12 @@ void loop() {
   } else if (50 < distance <= 60) {
     postData = "status=50%";
     delay(1000);
+  }
+
+  //round distance to the nearest 10
+  distance = distance - (distance % 10);
+  if (debug) {
+    postData = "status=" + String(distance) + "cm";
   }
 
   Serial.println(postData);
