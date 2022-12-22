@@ -11,20 +11,8 @@
 
     if(mysqli_num_rows($query_select_status)){
         while ($rows = mysqli_fetch_array($query_select_status)){
-            // if($rows['status'] == "10%"){
-            //     echo '<p>Rac 10%</p>';
-            // } if($rows['status'] == "20%") {
-            //     echo '<p>Rac 20%</p>';
-            // } if($rows['status'] == "30%") {
-            //     echo '<p>Rac 30%</p>';
-            // } if($rows['status'] == "40%") {
-            //     echo '<p>Rac 40%</p>';
-            // } if($rows['status'] == "50%") {
-            //     echo '<p>Rac 50%</p>';
-            // }
-
             $status = $rows['status'];
-            echo '<p>Rac' . $status . '</p>';
+            echo '<p>Trash Level ' . $status . '</p>';
             
         }
     }

@@ -6,10 +6,10 @@
 // #include <Servo.h>
 
 
-const int trig1 = D6;     // chân trig của HC-SR04
-const int echo1 = D5;     // chân echo của HC-SR04
+const int trig1 = D5;     // chân trig của HC-SR04
+const int echo1 = D4;     // chân echo của HC-SR04
 const int trig2 = D7;     // chân trig của HC-SR04
-const int echo2 = D4;     // chân echo của HC-SR04
+const int echo2 = D6;     // chân echo của HC-SR04
 
 // Servo myservo;
 ESP8266WiFiMulti WiFiMulti;
@@ -37,8 +37,8 @@ void setup() {
   Serial.println("Connected to WiFi");
   pinMode(trig1, OUTPUT);
   pinMode(trig2, OUTPUT);
-  pinMode(echo1,INPUT);
-  pinMode(echo2,INPUT);
+  pinMode(echo1, INPUT);
+  pinMode(echo2, INPUT);
 }
 
 void loop() {
@@ -56,7 +56,7 @@ void loop() {
 
   // int sensorValue = digitalRead(trig);
 
-  Serial.print("Gia tri cam bien:");
+  Serial.println("Gia tri cam bien:");
 
   //Day la gia tri cua ultrasonic
   digitalWrite(trig1,0);   // tắt chân trig
@@ -81,15 +81,20 @@ void loop() {
   distance = int(( distance1 + distance2) / 2);
 
 
-  Serial.println(digitalRead(echo1)); 
-  Serial.println(digitalRead(echo2));
+  // Serial.println(digitalRead(echo1)); 
+  // Serial.println(digitalRead(echo2));
 
   //round distance to the nearest 10
-  distance = distance - (distance % 10);
+  // distance = distance - (distance % 10);
   postData = "status=" + String(distance) + "cm";
   delay(1000);
 
+
   Serial.println(postData);
+  Serial.println(duration1);
+  Serial.println(duration2);
+  Serial.println(distance1);
+  Serial.println(distance2);
   Serial.print(distance);
   Serial.println("cm");
   delay(200);
