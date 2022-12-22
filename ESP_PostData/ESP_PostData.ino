@@ -5,7 +5,6 @@
 #include <ESP8266WiFiMulti.h>
 // #include <Servo.h>
 
-// int hong_ngoai = D6;
 
 const int trig1 = D6;     // chân trig của HC-SR04
 const int echo1 = D5;     // chân echo của HC-SR04
@@ -68,7 +67,6 @@ void loop() {
   delay(5000);   // xung có độ dài 5 microSeconds
   digitalWrite(trig1,0);   // tắt chân trig
   digitalWrite(trig2,0);   // tắt chân trig
-
   
     
   /* Tính toán thời gian cua sensor */
