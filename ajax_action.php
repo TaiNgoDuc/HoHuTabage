@@ -18,6 +18,7 @@
             $trashLevelPercent = round(($trashLevel / $trashHigh) * 100);
             echo '<span>Trash Level ' . $trashLevelPercent . '%</span>';
             echo '<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="' . $trashLevelPercent . '" aria-valuemin="0" aria-valuemax="100" style="width: ' . $trashLevelPercent . '%">' . $trashLevelPercent . '%</div>';
+            echo '<img src="images/"'.$trashLevelPercent.'".png" alt="trash level" class="img-fluid" style="width: 100%; height: 100%;"/>'
         }
     }
     
