@@ -16,8 +16,8 @@
             $status = $rows['status'];
             $trashLevel = $trashHigh - $status;
             $trashLevelPercent = round(($trashLevel / $trashHigh) * 100);
-            echo '<span>Trash Level ' . $status . '%</span>';
-            echo '<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="' . $status . '" aria-valuemin="0" aria-valuemax="100" style="width: ' . $status . '%">' . $status . '%</div>';
+            echo '<span>Trash Level ' . $trashLevelPercent . '%</span>';
+            echo '<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="' . $trashLevelPercent . '" aria-valuemin="0" aria-valuemax="100" style="width: ' . $trashLevelPercent . '%">' . $trashLevelPercent . '%</div>';
         }
     }
     
