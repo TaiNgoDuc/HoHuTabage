@@ -9,7 +9,7 @@ $(document).ready(function(){
             url :"ajax_action.php",
             method: "POST",
             success: function(data){
-                $('#status').html(data);
+                // $('#status').html(data);
                 console.log(data);
             }
         })
