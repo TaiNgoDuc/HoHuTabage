@@ -13,6 +13,8 @@ $(document).ready(function(){
                 var data = parseInt(data);
                 if (data > 0) {
                     $('#progress-bar').attr('value', data);
+                    $('#status').text(data + '%');
+                    data = Math.round(data / 10) * 10;
                     $('#recycle-bin').attr('src', 'images/' + data + '.png');
                 }
             }
