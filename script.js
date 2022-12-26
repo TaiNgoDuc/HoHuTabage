@@ -12,6 +12,9 @@ $(document).ready(function(){
                     $('#status').text(data + '%');
                     data = Math.round(data / 10) * 10;
                     $('#recycle-bin').attr('src', 'images/' + data + '.png');
+                    if (data >= 90) {
+                        alert('Rac day roi do di em oi');
+                    }
                 }
             }
         })
