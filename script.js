@@ -9,8 +9,12 @@ $(document).ready(function(){
             url :"ajax_action.php",
             method: "POST",
             success: function(data){
-                // $('#status').html(data);
                 console.log(data);
+                var data = parseInt(data);
+                if (data > 0) {
+                    $('#progress-bar').attr('value', data);
+                    $('#recycle-bin').attr('src', 'images/' + data + '.png');
+                }
             }
         })
     }
