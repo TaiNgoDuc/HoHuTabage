@@ -19,7 +19,7 @@ void setup()
 
 void loop() 
 {
-  //Serial.begin(9600);
+  // Serial.begin(9600);
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
   digitalWrite(trigPin, HIGH);
@@ -28,17 +28,18 @@ void loop()
 
   duration = pulseIn(echoPin, HIGH);
   distance = 0.034*(duration/2);
-  //Serial.println(distance);
+  // Serial.println(distance);
   if (distance < 27)
   {
     digitalWrite(led,HIGH);
-    myservo.write(pos+160);
+    myservo.write(90);
     delay(1000);
   }
   else 
   {
     digitalWrite(led,LOW);
-      myservo.write(pos);
+      myservo.write(-90);
   }
+
   delay(300);
 }

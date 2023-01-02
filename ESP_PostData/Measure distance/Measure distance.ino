@@ -15,9 +15,9 @@ void loop()
     
     /* Phát xung từ chân trig */
     digitalWrite(trig,0);   // tắt chân trig
-    delay(20000);
+    delay(2000);
     digitalWrite(trig,1);   // phát xung từ chân trig
-    delay(50000);   // xung có độ dài 5 microSeconds
+    delay(5000);   // xung có độ dài 5 microSeconds
     digitalWrite(trig,0);   // tắt chân trig
     
     /* Tính toán thời gian */
