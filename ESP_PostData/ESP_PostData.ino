@@ -3,6 +3,7 @@
 #include <WiFiClient.h>
 #include <Arduino_JSON.h>
 #include <ESP8266WiFiMulti.h>
+#include <ESP_Mail_Client.h>
 
 
 #define trig1     5   // pin TRIG to D1
@@ -10,11 +11,24 @@
 #define trig2     14   // pin TRIG to D5
 #define echo2     12   // pin ECHO to D6
 
+#define SMTP_HOST "smtp.gmail.com"
+#define SMTP_PORT 465
+
+/* The sign in credentials */
+#define AUTHOR_EMAIL "vanhoanbh1510@gmail.com"
+#define AUTHOR_PASSWORD "fshszhrlxydvpsti"
+
+/* Recipient's email*/
+#define RECIPIENT_EMAIL "hoangvanhoan1510@gmail.com"
+
+/* The SMTP Session object used for Email sending */
+SMTPSession smtp;
+
 // Servo myservo;
 ESP8266WiFiMulti WiFiMulti;
 
-const char* ssid = "Kid";    // Co dung thi nho doi ten wifi nhe cac nguoi anh em
-const char* password = "taingoduc0406";   // pass luon nhe cac ban
+const char* ssid = "We Are One";    // Co dung thi nho doi ten wifi nhe cac nguoi anh em
+const char* password = "12444nam";   // pass luon nhe cac ban
 
 // Your IP address or domain name with URL path
 const char* serverName = "http://hohutasmartgarbage.atwebpages.com/updateData.php";
@@ -42,6 +56,58 @@ void setup() {
 
   pinMode(trig2, OUTPUT);
   pinMode(echo2, INPUT);
+}
+
+void sendEmail() {
+
+  // sent mail function
+  /* Declare the session config data */
+  ESP_Mail_Session session;
+
+  /* Set the session config */
+  session.server.host_name = SMTP_HOST;
+  session.server.port = SMTP_PORT;
+  session.login.email = AUTHOR_EMAIL;
+  session.login.password = AUTHOR_PASSWORD;
+  session.login.user_domain = "";
+
+  /* Declare the message class */
+  SMTP_Message message;
+
+  /* Set the message headers */
+  message.sender.name = "ESP";
+  message.sender.email = AUTHOR_EMAIL;
+  message.subject = "GARBAGE LEVEL NOTIFICATION";
+  message.addRecipient("HoHuTa", RECIPIENT_EMAIL);
+
+  /*Send HTML message*/
+  String htmlMsg = "Dear User, </p> <br> <p>Please be advised that our trash bin is currently overflowing and needs to be addressed immediately. Please empty your garbage.</p><p>Best Regards,</p><p>Dev Team.";
+  message.html.content = htmlMsg.c_str();
+  message.html.content = htmlMsg.c_str();
+  message.text.charSet = "us-ascii";
+  message.html.transfer_encoding = Content_Transfer_Encoding::enc_7bit;
+
+  /*
+  //Send raw text message
+  String textMsg = "Hello World! - Sent from ESP board";
+  message.text.content = textMsg.c_str();
+  message.text.charSet = "us-ascii";
+  message.text.transfer_encoding = Content_Transfer_Encoding::enc_7bit;
+  
+  message.priority = esp_mail_smtp_priority::esp_mail_smtp_priority_low;
+  message.response.notify = esp_mail_smtp_notify_success | esp_mail_smtp_notify_failure | esp_mail_smtp_notify_delay;*/
+
+  /* Set the custom message header */
+  //message.addHeader("Message-ID: <abcde.fghij@gmail.com>");
+
+  /* Connect to server with the session config */
+  if (!smtp.connect(&session))
+    return;
+
+  /* Start sending Email and close the session */
+  if (!MailClient.sendMail(&smtp, &message))
+    Serial.println("Error sending Email, " + smtp.errorReason());
+
 }
 
 void loop() {
@@ -125,11 +191,13 @@ void loop() {
   delay(10000);
 
   //check if distance is less than 4cm
+  currentTime = currentTime + interval;
   if (distance < 4) {
-    currentTime = currentTime + interval;
+    
     if (currentTime >= pauseTime) {
       currentTime = 0;
-      Serial.println("testmail: zzzzz");
+      // Serial.println("testmail: zzzzz");
+      sendEmail();
     }
   }
 }
