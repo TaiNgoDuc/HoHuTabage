@@ -22,6 +22,8 @@ const char* serverName = "http://hohutasmartgarbage.atwebpages.com/updateData.ph
 // Update interval time set to 5 seconds
 const long interval = 5000;
 unsigned long previousMillis = 0;
+int currentTime = 3600000;
+int pauseTime = 3600000;
 
 void setup() {
   Serial.begin(57600);
@@ -121,4 +123,13 @@ void loop() {
 
   http.end();
   delay(10000);
+
+  //check if distance is less than 4cm
+  if (distance < 4) {
+    currentTime = currentTime + interval;
+    if (currentTime >= pauseTime) {
+      currentTime = 0;
+      Serial.println("testmail: zzzzz");
+    }
+  }
 }
