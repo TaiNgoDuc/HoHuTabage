@@ -7,7 +7,7 @@ $(document).ready(function(){
             success: function(data){
                 console.log(data);
                 var data = parseInt(data);
-                if (data > 0) {
+                if (data >= 0) {
                     $('#progress-bar').attr('value', data);
                     $('#status').text(data + '%');
                     data = Math.round(data / 10) * 10;
