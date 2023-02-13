@@ -129,13 +129,12 @@ void loop() {
 
   //Day la gia tri cua ultrasonic 1
   digitalWrite(trig1,0);   // tắt chân trig
-  
   delay(2000);
   digitalWrite(trig1,1);   // phát xung từ chân trig
-  digitalWrite(trig2,1);   // phát xung từ chân trig
+  // digitalWrite(trig2,1);   // phát xung từ chân trig
   delay(5000);   // xung có độ dài 5 microSeconds
   digitalWrite(trig1,0);   // tắt chân trig
-  digitalWrite(trig2,0);   // tắt chân trig
+  // digitalWrite(trig2,0);   // tắt chân trig
   
     
   /* Tính toán thời gian cua sensor */
@@ -192,7 +191,7 @@ void loop() {
 
   //check if distance is less than 4cm
   currentTime = currentTime + interval;
-  if (distance < 4) {
+  if (distance <= 2) {
     
     if (currentTime >= pauseTime) {
       currentTime = 0;

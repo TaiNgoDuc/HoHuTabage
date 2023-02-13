@@ -5,7 +5,7 @@
     $password = "(-oN8:jr2**#Q*,g";
     $dbName = "4230494_postdata";
 
-    $trashHigh = 24;
+    $trashHigh = 22;
 
     $con = new mysqli($serverName, $userName, $password, $dbName);
 

@@ -1,5 +1,5 @@
-const int trig = D6;     // chân trig của HC-SR04
-const int echo = D5;     // chân echo của HC-SR04
+const int trig = D5;     // chân trig của HC-SR04
+const int echo = D6;     // chân echo của HC-SR04
 
 void setup()
 {
